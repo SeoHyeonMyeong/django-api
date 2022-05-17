@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Index</h1>
-<h1>Hello World!</h1>
+    <h1>Index</h1>
+    <h1>Hello World!</h1>
+
+    <p>
+        {{ user_name }}, {{ user_id }}
+    </p>
+
+    <ul>
+    {% for comment in user_comments %}
+        <li>{{ forloop.counter }} - {{ comment }}</li>
+    {% endfor %}
+    </ul>
+
 {% endblock content %}
