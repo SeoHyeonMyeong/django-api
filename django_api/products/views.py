@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .forms import ProductForm
 from .models import Product
 
 # Create your views here.
@@ -11,6 +12,16 @@ def index_view(request, *args, **kwargs):
         "user_comments": ["hi","what","thisis..."],
     }
     return render(request, "index.html", context)
+
+def product_create_view(request):
+    form = ProductForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        
+    context = {
+        'form': form,
+    }
+    return render(request, "products/create.html", context)
 
 def product_detail_view(request):
     obj = Product.objects.get(id=1)
