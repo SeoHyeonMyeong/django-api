@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="m-5">세부정보</h1>
+<table class="table table-bordered m-5 p-3">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ title }}</td>
+        <td>{{ description }}</td>
+        <td>{{ price }} 원</td>
+      </tr>
+  </table>
+
+{% endblock %}
