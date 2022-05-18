@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.urls import reverse
 
@@ -34,7 +35,16 @@ def product_list_view(request):
 
 def product_detail_view(request, id):
     obj = get_object_or_404(Product, id=id)
+    obj.id = id
     context = {
         'object': obj
     }
     return render(request, "products/detail.html", context)
+
+def product_delete_view(request, id):
+    obj = get_object_or_404(Product, id=id)
+    if request.method == "GET":
+        obj.delete()
+        return redirect('product')
+    else:
+        raise Http404
