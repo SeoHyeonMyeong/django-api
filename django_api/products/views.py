@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from .forms import ProductForm
 from .models import Product
@@ -17,7 +18,7 @@ def product_create_view(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
         form.save()
-        form = ProductForm()
+        return redirect('detail', form.instance.id)
         
     context = {
         'form': form
