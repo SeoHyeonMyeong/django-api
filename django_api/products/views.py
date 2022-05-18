@@ -1,5 +1,4 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.urls import reverse
 
 from .forms import ProductForm
@@ -26,7 +25,7 @@ def product_create_view(request):
     return render(request, "products/create.html", context)
 
 def product_list_view(request):
-    obj = Product.objects.all()
+    obj = get_list_or_404(Product)
     print(obj)
     context = {
         'products': obj
@@ -34,10 +33,8 @@ def product_list_view(request):
     return render(request, "products/list.html", context)
 
 def product_detail_view(request, id):
-    obj = Product.objects.get(id=id)
+    obj = get_object_or_404(Product, id=id)
     context = {
-        'title': obj.title,
-        'description': obj.description,
-        'price': obj.price,
+        'object': obj
     }
     return render(request, "products/detail.html", context)
