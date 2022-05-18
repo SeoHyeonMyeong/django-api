@@ -17,14 +17,23 @@ def product_create_view(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
         form.save()
+        form = ProductForm()
         
     context = {
-        'form': form,
+        'form': form
     }
     return render(request, "products/create.html", context)
 
-def product_detail_view(request):
-    obj = Product.objects.get(id=1)
+def product_list_view(request):
+    obj = Product.objects.all()
+    print(obj)
+    context = {
+        'products': obj
+    }
+    return render(request, "products/list.html", context)
+
+def product_detail_view(request, id):
+    obj = Product.objects.get(id=id)
     context = {
         'title': obj.title,
         'description': obj.description,
