@@ -22,6 +22,7 @@ from .views import (
     product_delete_view
 )
 
+app_name = 'products'
 urlpatterns = [
     path('<int:id>', product_detail_view, name='detail'),
     path('<int:id>/delete', product_delete_view),

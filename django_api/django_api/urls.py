@@ -21,5 +21,7 @@ urlpatterns = [
     path('', index_view, name='index'),
     path('admin/', admin.site.urls),
     
-    path('products/', include('products.urls'))
+    # include app urls
+    path('products/', include('products.urls')),
+    path('instagram/', include('instagram.urls'))
 ]
