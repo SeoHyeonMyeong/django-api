@@ -4,4 +4,10 @@
 
 <h1>인스타그램</h1>
 
+<div style="padding: 200px;">
+{% for article in articles %}
+    {% include "instagram/articleCard.html" with article=article %}
+{% endfor %}
+</div>
+
 {% endblock %}
